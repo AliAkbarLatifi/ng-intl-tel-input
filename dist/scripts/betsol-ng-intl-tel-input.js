@@ -14,7 +14,12 @@
 
   angular.module('betsol.intlTelInput', [])
 
-    .constant('intlTelInputOptions', {})
+    .constant('intlTelInputOptions', {
+        nationalMode: false,
+        defaultCountry: 'auto',
+        preferredCountries: ['ir'],
+        autoFormat: true,
+        autoPlaceholder: true})
 
     .directive('intlTelInput', ['intlTelInputOptions', function (
       intlTelInputOptions
@@ -32,6 +37,7 @@
            * Obtaining reference to the plugin API
            * and making sure it's present.
            */
+          $element = $($element);
           var pluginApi = $element.intlTelInput;
           if (!pluginApi) {
             log('intl-tel-input jQuery plugin must be loaded, skipping directive initialization');
